@@ -4,8 +4,7 @@ declare(strict_types=1);
 function getAllConstants(): array
 {
     $allConstants = get_defined_constants(true);
-    
-    // Сортируем категории по алфавиту для удобства
+
     ksort($allConstants);
     
     return $allConstants;
