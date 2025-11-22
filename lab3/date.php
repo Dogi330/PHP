@@ -5,7 +5,7 @@
     echo $now;
     echo "<br>";
     
-    $birthday = mktime(0,0,0,7,21,2005);
+    $birthday = mktime(0,0,0,9,13,2003);
 	echo $birthday;
 	echo"<br>";
     
