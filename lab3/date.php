@@ -39,7 +39,7 @@
 	    $welcome = 'Добрый вечер';
 	    
 	}else{
-	    $weclome = 'Доброй ночи';
+	    $welсome = 'Доброй ночи';
 	    
 	}
 	echo $welcome;
