@@ -1,10 +1,10 @@
 <?php
     $now = time();
-    echo $now;
+    echo "Текущее время: " . $now;
     echo "<br>";
     
-    $birthday = mktime(0,0,0,9,13,2003);
-    echo $birthday;
+    $birthday = mktime(0,0,0,7,21,2005);
+    echo "Мой день рождения: " . date('d.m.Y', $birthday);
     echo "<br>";
     
     $hour = getdate();
@@ -23,51 +23,52 @@
 <body>
     
     <?php
-    $welcome = " ";
-    if ($current_hour > 0 && $current_hour < 6) {
-        $welcome = 'Доброе утро';
-    } elseif ($current_hour <= 12 && $current_hour >= 6) {
-        $welcome = 'Добрый день';
-    } elseif ($current_hour <= 18 && $current_hour >= 12) {
-        $welcome = 'Добрый вечер';
-    } else {
+    $welcome = "";
+    if ($current_hour >= 0 && $current_hour < 6) {
         $welcome = 'Доброй ночи';
+    } elseif ($current_hour >= 6 && $current_hour < 12) {
+        $welcome = 'Доброе утро';
+    } elseif ($current_hour >= 12 && $current_hour < 18) {
+        $welcome = 'Добрый день';
+    } else {
+        $welcome = 'Добрый вечер';
     }
     echo $welcome;
     echo "<br>";
     
-    setlocale(LC_ALL, 'ru_RU.UTF-8');
+    // Простой способ вывода текущей даты
+    echo "Сегодня: " . date('d.m.Y H:i:s');
     echo "<br>";
     
-    $formatter = new IntlDateFormatter(
-        'ru_RU',
-        IntlDateFormatter::FULL,
-        IntlDateFormatter::MEDIUM,
-        'Europe/Moscow',
-        IntlDateFormatter::GREGORIAN,
-        "Сегодня d MMMM y 'года', eeee HH:mm:ss"
-    );
-
-    echo $formatter->format(time());
-    echo "<br>";
+    // Альтернативный способ с IntlDateFormatter (если расширение установлено)
+    if (class_exists('IntlDateFormatter')) {
+        $formatter = new IntlDateFormatter(
+            'ru_RU',
+            IntlDateFormatter::FULL,
+            IntlDateFormatter::MEDIUM,
+            'Europe/Moscow'
+        );
+        echo "Текущая дата: " . $formatter->format(time());
+        echo "<br>";
+    }
     
+    // Расчет дней до дня рождения
     $today = new DateTime();
     $nextBirthday = new DateTime();
-    $nextBirthday->setTimestamp($birthday);
-    $nextBirthday->setDate($today->format('Y'), $nextBirthday->format('m'), $nextBirthday->format('d'));
-
+    $nextBirthday->setDate($today->format('Y'), 7, 21); // 21 июля
+    
+    // Если день рождения в этом году уже прошел, берем следующий год
     if ($today > $nextBirthday) {
         $nextBirthday->modify('+1 year');
     }
-
+    
     $interval = $today->diff($nextBirthday);
     
-    $days = $interval->days;
-    $hours = $interval->h;
-    $minutes = $interval->i;
-    $seconds = $interval->s;
+    echo "До моего дня рождения осталось: " . $interval->days . " дней";
+    echo "<br>";
     
-    echo "До моего дня рождения осталось: $days дней, $hours часов, $minutes минут, $seconds секунд";
+    // Более подробный вывод
+    echo "До моего дня рождения осталось: " . $interval->format('%a дней, %h часов, %i минут, %s секунд');
     ?>
 </body>
 </html>
