@@ -1,13 +1,15 @@
 <?php
+// Сначала объявляем переменные со значениями по умолчанию
+$cols = 10;
+$rows = 10;
+$color = '#ffff00';
 
+// Затем обрабатываем POST-запрос
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $cols = abs((int) $_POST['cols']);
     $rows = abs((int) $_POST['rows']);
     $color = trim(strip_tags($_POST['color']));
 }
-$cols = ($cols) ? $cols : 10;
-$rows = ($rows) ? $rows : 10;
-$color = ($color) ? $color : '#ffff00';
 ?>
 <h3>Таблица умножения</h3>
 <form action='<?=$_SERVER['REQUEST_URI']?>' method='POST'>
