@@ -1,49 +1,29 @@
 <?php
-// Инициализация переменных со значениями по умолчанию
-$cols = 10;
-$rows = 10;
-$color = '#ffff00';
-
-// Обработка POST-запроса
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $cols = !empty($_POST['cols']) ? abs((int) $_POST['cols']) : $cols;
-    $rows = !empty($_POST['rows']) ? abs((int) $_POST['rows']) : $rows;
-    $color = !empty($_POST['color']) ? trim(strip_tags($_POST['color'])) : $color;
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+	$cols = abs((int) $_POST['cols']);
+	$rows = abs((int) $_POST['rows']);
+	$color = trim(strip_tags($_POST['color']));
 }
+$cols = ($cols ?? 0) ? $cols : 10;
+$rows = ($rows ?? 0) ? $rows : 10;
+$color = ($color ?? '') ? $color : '#ffff00';
 ?>
-
-<!-- Область основного контента -->
-<h3>Таблица умножения</h3>
-<form action='<?= $_SERVER['REQUEST_URI'] ?>' method='POST'>
-    <label>Количество колонок: </label>
-    <br>
-    <input name='cols' type='text' value='<?= isset($_POST['cols']) ? htmlspecialchars($_POST['cols']) : '' ?>'>
-    <br>
-    
-    <label>Количество строк: </label>
-    <br>
-    <input name='rows' type='text' value='<?= isset($_POST['rows']) ? htmlspecialchars($_POST['rows']) : '' ?>'>
-    <br>
-    
-    <label>Цвет: </label>
-    <br>
-    <input name='color' type='color' value='<?= isset($_POST['color']) ? htmlspecialchars($_POST['color']) : '#ff0000' ?>' list="listColors">
-    <datalist id="listColors">
+<section>
+    <form action='<?= $_SERVER['REQUEST_URI']?>' method="POST">
+      <label>Колонки: </label><br>
+      <input name='cols' type='text' value='<?= $cols ?>'><br>
+      <label>Строки: </label><br>
+      <input name='rows' type='text' value='<?= $rows ?>'><br>
+      <label>Цвет: </label><br>
+      <input name='color' type='color' value='<?= $color ?>' list="listColors">
+      <datalist id="listColors">
         <option>#ff0000</option>
         <option>#00ff00</option>
         <option>#0000ff</option>
-    </datalist>
+      </datalist>
+      <br><br>
+      <input type='submit' value='Создать'>
+    </form>
     <br>
-    <br>
-    
-    <input type='submit' value='Создать'>
-</form>
-<br>
-
-<?php 
-drawTable($cols, $rows, $color);
-?>
-
-<?php 
-drawTable($cols, $rows, $color);
-?>
+    <?php drawTable($cols, $rows, $color); ?>
+</section>
