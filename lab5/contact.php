@@ -1,8 +1,6 @@
 <?php
 declare(strict_types=1);
-
 $message = "";
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $subject = filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $body = filter_input(INPUT_POST, 'body', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -24,7 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -32,9 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Контакты</title>
     <meta charset="utf-8">
 </head>
-
 <body>
-
     <section>
         <!-- Заголовок -->
         <h1>Обратная связь</h1>
@@ -57,9 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
 
         <?= $message ?>
-        <!-- Область основного контента -->
-    </section>
 
+    </section>
     <footer>
         <!-- Нижняя часть страницы -->
         &copy; Супер Мега Веб-мастер, 2000 &ndash; 20xx
