@@ -1,7 +1,7 @@
 <?php
 
 
-    $now = time(;
+    $now = time();
     echo $now;
     echo "<br>";
     
