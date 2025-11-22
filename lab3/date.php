@@ -65,33 +65,23 @@
     echo "<br>";
     
     // Расчет времени до дня рождения
-    $today = new DateTime();
-    $nextBirthday = new DateTime();
-    $nextBirthday->setDate($today->format('Y'), 9, 13); // 13 сентября
+    $current_timestamp = time();
+    $next_birthday_timestamp = mktime(0, 0, 0, 9, 13, date('Y')); // 13 сентября текущего года
     
     // Если день рождения в этом году уже прошел, берем следующий год
-    if ($today > $nextBirthday) {
-        $nextBirthday->modify('+1 year');
+    if ($current_timestamp > $next_birthday_timestamp) {
+        $next_birthday_timestamp = mktime(0, 0, 0, 9, 13, date('Y') + 1);
     }
     
-    // Разница между датами
-    $interval = $today->diff($nextBirthday);
-    
-    // Получаем общее количество секунд до дня рождения
-    $seconds_until_birthday = $nextBirthday->getTimestamp() - $today->getTimestamp();
+    // Вычисляем разницу в секундах
+    $seconds_until_birthday = $next_birthday_timestamp - $current_timestamp;
     
     // Вычисляем дни, часы, минуты и секунды
-    $days = $interval->days;
-    $hours = $interval->h;
-    $minutes = $interval->i;
-    $seconds = $interval->s;
+    $days = floor($seconds_until_birthday / (60 * 60 * 24));
+    $hours = floor(($seconds_until_birthday % (60 * 60 * 24)) / (60 * 60));
+    $minutes = floor(($seconds_until_birthday % (60 * 60)) / 60);
+    $seconds = $seconds_until_birthday % 60;
     
-    // Альтернативный расчет для точного времени
-    $total_hours = floor($seconds_until_birthday / 3600);
-    $total_minutes = floor(($seconds_until_birthday % 3600) / 60);
-    $total_seconds = $seconds_until_birthday % 60;
-    
-    // Используем данные из интервала для согласованности
     echo "До моего дня рождения осталось: $days дней, $hours часов, $minutes минут, $seconds секунд";
     ?>
 </body>
