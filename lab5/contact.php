@@ -1,16 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Форма обратной связи с отправкой email
- */
-
-/**
- * Фильтрует и валидирует данные формы
- * 
- * @param array $postData Данные из формы
- * @return array Очищенные и проверенные данные
- */
 function filterFormData(array $postData): array
 {
     $subject = trim(strip_tags($postData['subject'] ?? ''));
@@ -24,15 +14,6 @@ function filterFormData(array $postData): array
     ];
 }
 
-/**
- * Отправляет email с заданными параметрами
- * 
- * @param string $to Адрес получателя
- * @param string $subject Тема письма
- * @param string $body Текст письма
- * @param string $fromEmail Email отправителя
- * @return bool true если письмо отправлено успешно, false в противном случае
- */
 function sendEmail(string $to, string $subject, string $body, string $fromEmail = 'admin@center.ogu'): bool
 {
     $headers = [
@@ -58,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $message = 'Пожалуйста, заполните все поля корректно';
         $messageType = 'error';
     } else {
-        $to = 'max.shep444@gmail.com'; 
+        $to = 'tronliz57gmail.com'; 
         $success = sendEmail($to, $filteredData['subject'], $filteredData['body']);
         
         if ($success) {
@@ -136,3 +117,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </body>
 
 </html>
+
