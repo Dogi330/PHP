@@ -12,7 +12,7 @@ declare(strict_types=1);
         }
     }
 
-    $var = "HELLO";
+    $var = "ПРИВЕТ";
 ?>
 <!DOCTYPE html>
 <html lang="ru">
