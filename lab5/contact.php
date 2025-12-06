@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $message = 'Пожалуйста, заполните все поля корректно';
         $messageType = 'error';
     } else {
-        $to = 'tronliz57gmail.com'; 
+        $to = 'tronliz57@gmail.com'; 
         $success = sendEmail($to, $filteredData['subject'], $filteredData['body']);
         
         if ($success) {
@@ -117,4 +117,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </body>
 
 </html>
+
 
