@@ -21,9 +21,9 @@ use MyProject\Classes\SuperUser;
 echo "<h1>Демонстрация работы с классами</h1>";
 
 echo "<h2>Обычные пользователи:</h2>";
-$user1 = new User("Грек Макбыков", "makbykov", "password123");
-$user2 = new User("Владимир Путин", "putin", "qwerty123");
-$user3 = new User("Максим Шепелев", "shepelev", "secret123");
+$user1 = new User("Александр Воронцов", "voron", "password1");
+$user2 = new User("Дмитрий Соколов", "sokol", "password2");
+$user3 = new User("Анна Козлова", "kozlova", "password3");
 $user1->showInfo();
 $user2->showInfo();
 $user3->showInfo();
@@ -33,4 +33,5 @@ $superUser = new SuperUser("Администратор", "admin", "admin123", "�
 $superUser->showInfo();
 
 echo "<p>Скрипт завершен. Объекты будут уничтожены автоматически.</p>";
+
 ?>
